@@ -10,9 +10,12 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 /**
- *
- * @author ssobczyk
+ * @author Ivan Piesh
+ * @author Sara Sobczyk
+ * @author Dawn Touriac
+ * @author Kevin Taylor
  */
+
 public class Form extends JFrame implements ActionListener {
 
     private final JPanel contentPane;
@@ -24,7 +27,7 @@ public class Form extends JFrame implements ActionListener {
     private final JLabel address; 
     private final JTextArea tA; 
     private final JLabel email; 
-    private final JTextArea tE;
+    private final JTextField tE;
     private final JButton sub; 
     private final JButton reset; 
     private final JTextArea tout; 
@@ -35,7 +38,7 @@ public class Form extends JFrame implements ActionListener {
     
     public Form() {   
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(450, 190, 1014, 597);
+        setBounds(800, 450, 800, 450);
         setResizable(false);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,96 +49,95 @@ public class Form extends JFrame implements ActionListener {
         title = new JLabel("Registration Form"); 
         title.setFont(new Font("Gotham", Font.PLAIN, 25)); 
         title.setSize(300, 30); 
-        title.setLocation(300, 30); 
+        title.setLocation(275, 30); 
         contentPane.add(title); 
         
 // Name  
         name = new JLabel("Name"); 
-        name.setFont(new Font("Gotham", Font.PLAIN, 14)); 
-        name.setSize(100, 20); 
+        name.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        name.setSize(200, 30); 
         name.setLocation(100, 100); 
         contentPane.add(name); 
   
         tname = new JTextField(); 
         tname.setFont(new Font("Gotham", Font.PLAIN, 15)); 
-        tname.setSize(190, 20); 
-        tname.setLocation(200, 100); 
-        contentPane.add(tname); 
-        
-// Address  
-        address = new JLabel("Address"); 
-        address.setFont(new Font("Gotham", Font.PLAIN, 25)); 
-        address.setSize(100, 20); 
-        address.setLocation(100, 300); 
-        contentPane.add(address); 
-  
-        tA = new JTextArea(); 
-        tA.setFont(new Font("Gotham", Font.PLAIN, 15)); 
-        tA.setSize(200, 75); 
-        tA.setLocation(200, 300); 
-        tA.setLineWrap(true); 
-        contentPane.add(tA); 
-        
-// Email   
-        email = new JLabel("Email"); 
-        email.setFont(new Font("Gotham", Font.PLAIN, 25)); 
-        email.setSize(100, 20); 
-        email.setLocation(100, 200); 
-        contentPane.add(email); 
-  
-        tE = new JTextArea(); 
-        tE.setFont(new Font("Arial", Font.PLAIN, 15)); 
-        tE.setSize(200, 75); 
-        tE.setLocation(200, 200); 
-        tE.setLineWrap(true); 
-        contentPane.add(tE);
+        tname.setSize(225, 30); 
+        tname.setLocation(225, 100); 
+        contentPane.add(tname);   
         
 // Phone Number  
         phoneNumber = new JLabel("Phone Number"); 
-        phoneNumber.setFont(new Font("Gotham", Font.PLAIN, 25)); 
-        phoneNumber.setSize(100, 20); 
+        phoneNumber.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        phoneNumber.setSize(200, 30); 
         phoneNumber.setLocation(100, 150); 
         contentPane.add(phoneNumber); 
   
         tPN = new JTextField(); 
-        tPN.setFont(new Font("AGotham", Font.PLAIN, 15)); 
-        tPN.setSize(150, 20); 
-        tPN.setLocation(200, 150); 
-        contentPane.add(tPN);
+        tPN.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        tPN.setSize(225, 30); 
+        tPN.setLocation(225, 150); 
+        contentPane.add(tPN);        
+
+// Email   
+        email = new JLabel("Email"); 
+        email.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        email.setSize(200, 30); 
+        email.setLocation(100, 200); 
+        contentPane.add(email); 
+  
+        tE = new JTextField(); 
+        tE.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        tE.setSize(225, 30); 
+        tE.setLocation(225, 200);  
+        contentPane.add(tE);
+        
+// Address  
+        address = new JLabel("Address"); 
+        address.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        address.setSize(200, 30); 
+        address.setLocation(100, 250); 
+        contentPane.add(address); 
+  
+        tA = new JTextArea(); 
+        tA.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        tA.setSize(225, 60); 
+        tA.setLocation(225, 250); 
+        tA.setLineWrap(true); 
+        contentPane.add(tA); 
         
 // Submit Button
         sub = new JButton("Submit"); 
         sub.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         sub.setSize(100, 20); 
-        sub.setLocation(150, 450); 
+        sub.setLocation(275, 350); 
         sub.addActionListener((ActionListener) this); 
         contentPane.add(sub); 
   
         reset = new JButton("Reset"); 
         reset.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         reset.setSize(100, 20); 
-        reset.setLocation(270, 450); 
+        reset.setLocation(400, 350); 
         reset.addActionListener((ActionListener) this); 
         contentPane.add(reset); 
   
         tout = new JTextArea(); 
         tout.setFont(new Font("Gotham", Font.PLAIN, 15)); 
-        tout.setSize(300, 400); 
+        tout.setSize(200, 210); 
         tout.setLocation(500, 100); 
         tout.setLineWrap(true); 
         tout.setEditable(false); 
         contentPane.add(tout); 
   
         res = new JLabel(""); 
-        res.setFont(new Font("Gotham", Font.PLAIN, 25)); 
+        res.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         res.setSize(500, 25); 
-        res.setLocation(100, 500); 
+        res.setLocation(170, 375); 
         contentPane.add(res);
   
         resadd = new JTextArea(); 
         resadd.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         resadd.setSize(200, 75); 
-        resadd.setLocation(580, 175); 
+        resadd.setLocation(500, 100); 
         resadd.setLineWrap(true); 
         contentPane.add(resadd); 
     } 
