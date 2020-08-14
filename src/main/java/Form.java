@@ -1,29 +1,36 @@
-<<<<<<< Updated upstream
-import javax.swing.*; 
-import java.awt.*; 
-import java.awt.event.*;
-=======
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EmptyBorder;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
->>>>>>> Stashed changes
+
 
 /**
- *
- * @author ssobczyk
+ * @author Ivan Piesh
+ * @author Sara Sobczyk
+ * @author Dawn Touriac
+ * @author Kevin Taylor
  */
-public class Form {
 
-    private final Container c; 
+public class Form extends JFrame implements ActionListener {
+
+    private final JPanel contentPane;
     private final JLabel title; 
     private final JLabel name; 
     private final JTextField tname; 
@@ -32,159 +39,141 @@ public class Form {
     private final JLabel address; 
     private final JTextArea tA; 
     private final JLabel email; 
-    private final JTextArea tE;
-    private final JCheckBox term;
+    private final JTextField tE;
     private final JButton sub; 
     private final JButton reset; 
     private final JTextArea tout; 
     private final JLabel res; 
-<<<<<<< Updated upstream
-    private final JTextArea resadd;  
-=======
     private final JTextArea resadd;
     FileWriter fileWriter;
->>>>>>> Stashed changes
   
- 
-    public Form() 
-    {  
-        c = getContentPane(); 
-        c.setLayout(null); 
+    //TODO: Add input validation
+    
+    public Form() {   
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(800, 450, 800, 450);
+        setResizable(false);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
         
 // Title
-        title = new JLabel("Registration Form"); 
-        title.setFont(new Font("Gotham", Font.PLAIN, 40)); 
+        title = new JLabel("Contact Form"); 
+        title.setFont(new Font("Gotham", Font.PLAIN, 25)); 
         title.setSize(300, 30); 
-        title.setLocation(300, 30); 
-        c.add(title); 
+        title.setLocation(297, 30); 
+        contentPane.add(title); 
         
 // Name  
         name = new JLabel("Name"); 
-        name.setFont(new Font("Gotham", Font.PLAIN, 25)); 
-        name.setSize(100, 20); 
+        name.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        name.setSize(200, 30); 
         name.setLocation(100, 100); 
-        c.add(name); 
+        contentPane.add(name); 
   
         tname = new JTextField(); 
         tname.setFont(new Font("Gotham", Font.PLAIN, 15)); 
-        tname.setSize(190, 20); 
-        tname.setLocation(200, 100); 
-        c.add(tname); 
-        
-// Address  
-        address = new JLabel("Address"); 
-        address.setFont(new Font("Gotham", Font.PLAIN, 25)); 
-        address.setSize(100, 20); 
-        address.setLocation(100, 300); 
-        c.add(address); 
-  
-        tA = new JTextArea(); 
-        tA.setFont(new Font("Gotham", Font.PLAIN, 15)); 
-        tA.setSize(200, 75); 
-        tA.setLocation(200, 300); 
-        tA.setLineWrap(true); 
-        c.add(tA); 
-        
-// Email   
-        email = new JLabel("Email"); 
-        email.setFont(new Font("Gotham", Font.PLAIN, 25)); 
-        email.setSize(100, 20); 
-        email.setLocation(100, 300); 
-        c.add(email); 
-  
-        tE = new JTextArea(); 
-        tE.setFont(new Font("Arial", Font.PLAIN, 15)); 
-        tE.setSize(200, 75); 
-        tE.setLocation(200, 300); 
-        tE.setLineWrap(true); 
-        c.add(tE);
+        tname.setSize(225, 30); 
+        tname.setLocation(225, 100); 
+        contentPane.add(tname);   
         
 // Phone Number  
         phoneNumber = new JLabel("Phone Number"); 
-        phoneNumber.setFont(new Font("Gotham", Font.PLAIN, 25)); 
-        phoneNumber.setSize(100, 20); 
+        phoneNumber.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        phoneNumber.setSize(200, 30); 
         phoneNumber.setLocation(100, 150); 
-        c.add(phoneNumber); 
+        contentPane.add(phoneNumber); 
   
         tPN = new JTextField(); 
-        tPN.setFont(new Font("AGotham", Font.PLAIN, 15)); 
-        tPN.setSize(150, 20); 
-        tPN.setLocation(200, 150); 
-        c.add(tPN); 
+        tPN.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        tPN.setSize(225, 30); 
+        tPN.setLocation(225, 150); 
+        contentPane.add(tPN);        
 
-        term = new JCheckBox("Accept Terms And Conditions."); 
-        term.setFont(new Font("Gotham", Font.PLAIN, 15)); 
-        term.setSize(250, 20); 
-        term.setLocation(150, 400); 
-        c.add(term);
+// Email   
+        email = new JLabel("Email"); 
+        email.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        email.setSize(200, 30); 
+        email.setLocation(100, 200); 
+        contentPane.add(email); 
+  
+        tE = new JTextField(); 
+        tE.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        tE.setSize(225, 30); 
+        tE.setLocation(225, 200);  
+        contentPane.add(tE);
+        
+// Address  
+        address = new JLabel("Address"); 
+        address.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        address.setSize(200, 30); 
+        address.setLocation(100, 250); 
+        contentPane.add(address); 
+        
+        tA = new JTextArea(); 
+        patch(tA);
+        tA.setFont(new Font("Gotham", Font.PLAIN, 15)); 
+        tA.setSize(225, 60);
+        tA.setLocation(225, 250); 
+        tA.setLineWrap(true); 
+        contentPane.add(tA);
         
 // Submit Button
         sub = new JButton("Submit"); 
         sub.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         sub.setSize(100, 20); 
-        sub.setLocation(150, 450); 
-        sub.addActionListener((ActionListener) this); 
-        c.add(sub); 
-  
-        reset = new JButton("Reset"); 
+        sub.setLocation(275, 350); 
+        sub.addActionListener((ActionListener) this);
+        contentPane.add(sub); 
+        
+        sub.registerKeyboardAction(sub.getActionForKeyStroke(
+        KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false)),
+        KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),
+        JComponent.WHEN_FOCUSED);
+        
+        sub.registerKeyboardAction(sub.getActionForKeyStroke(
+        KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, true)),
+        KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
+        JComponent.WHEN_FOCUSED);
+
+// Reset Button  
+        reset = new JButton("Reset");
         reset.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         reset.setSize(100, 20); 
-        reset.setLocation(270, 450); 
+        reset.setLocation(400, 350); 
         reset.addActionListener((ActionListener) this); 
-        c.add(reset); 
-  
+        contentPane.add(reset);
+        
+        reset.registerKeyboardAction(reset.getActionForKeyStroke(
+        KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false)),
+        KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),
+        JComponent.WHEN_FOCUSED);
+        
+        reset.registerKeyboardAction(reset.getActionForKeyStroke(
+        KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, true)),
+        KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
+        JComponent.WHEN_FOCUSED);
+
         tout = new JTextArea(); 
         tout.setFont(new Font("Gotham", Font.PLAIN, 15)); 
-        tout.setSize(300, 400); 
+        tout.setSize(200, 210); 
         tout.setLocation(500, 100); 
         tout.setLineWrap(true); 
         tout.setEditable(false); 
-        c.add(tout); 
+        contentPane.add(tout); 
   
         res = new JLabel(""); 
-        res.setFont(new Font("Gotham", Font.PLAIN, 25)); 
+        res.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         res.setSize(500, 25); 
-        res.setLocation(100, 500); 
-        c.add(res); 
-  
-        resadd = new JTextArea(); 
-        resadd.setFont(new Font("Gotham", Font.PLAIN, 15)); 
-        resadd.setSize(200, 75); 
-        resadd.setLocation(580, 175); 
-        resadd.setLineWrap(true); 
-        c.add(resadd); 
+        res.setLocation(275, 375); 
+        contentPane.add(res);
+
     } 
   
-
-    
-    
-    
-    
-    
-    
     public void actionPerformed(ActionEvent e) 
     { 
         if (e.getSource() == sub) { 
-<<<<<<< Updated upstream
-            if (term.isSelected()) {  
-                String data 
-                    = "Name : "
-                      + tname.getText() + "\n"
-                      + "Mobile : "
-                      + tPN.getText() + "\n";  
-  
-                String data3 = "Address : " + tA.getText(); 
-                tout.setText(data + data3); 
-                tout.setEditable(false); 
-                res.setText("Registration Successfully.."); 
-            } 
-            else { 
-                tout.setText(""); 
-                resadd.setText(""); 
-                res.setText("Please accept the"
-                            + " terms & conditions.."); 
-            } 
-=======
             String data 
                 = "Name : "
                   + tname.getText() + "\n"
@@ -194,10 +183,9 @@ public class Form {
                   + tE.getText() + "\n";
 
             String data3 = "Address : " + tA.getText(); 
-            tout.setText(data + data3); 
+            tout.setText(data + data3);
             tout.setEditable(false);          
-            res.setText("Registration Successful!"); 
-
+            res.setText("Contact Registration Successful!");
 			try {
 			  String file = "Wk9Grp3Assignment.txt";
 			  String path = ("../" +file);
@@ -209,23 +197,33 @@ public class Form {
 			  fileWriter.close();
 			  JOptionPane.showMessageDialog(null, "Output file " +file+ " has been successfully saved to project root folder.");
 			} catch (Exception f) {JOptionPane.showMessageDialog(null, f + "");}
->>>>>>> Stashed changes
-        } 
+   } 
   
         else if (e.getSource() == reset) { 
             String def = ""; 
-            tname.setText(def); 
-            tA.setText(def); 
-			tE.setText(def);
+            tname.setText(def);
+            tA.setText(def);
+            tE.setText(def);
             tPN.setText(def); 
             res.setText(def); 
             tout.setText(def); 
-            term.setSelected(false);  
-            resadd.setText(def); 
-        } 
-
-		else if (e.getActionCommand()== sub.getActionCommand()) {
-
-		}
-    } 
-} 
+        }
+    }
+    
+    //Patches issue with not being able to tab out of certain components
+    private void patch(Component c) {
+        Set<KeyStroke> 
+        strokes = new HashSet<>(Arrays.asList(KeyStroke.getKeyStroke("pressed TAB")));
+        c.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, strokes);
+        strokes = new HashSet<>(Arrays.asList(KeyStroke.getKeyStroke("shift pressed TAB")));
+        c.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, strokes);
+    }
+}
+    
+//    PHONE NUMBER VALIDATION NOTES
+//    private boolean isValidPhoneNumber(){
+//        if (phoneNumber.matches("\\d{10}")) return true;
+//        if (phoneNumber.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
+//        if (phoneNumber.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) return true;
+//        return false;
+//    }
