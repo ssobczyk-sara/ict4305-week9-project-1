@@ -16,6 +16,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EmptyBorder;
+import java.io.FileWriter;
+import javax.swing.JOptionPane;
+
 
 /**
  * @author Ivan Piesh
@@ -39,7 +43,9 @@ public class Form extends JFrame implements ActionListener {
     private final JButton sub; 
     private final JButton reset; 
     private final JTextArea tout; 
-    private final JLabel res;
+    private final JLabel res; 
+    private final JTextArea resadd;
+    FileWriter fileWriter;
   
     //TODO: Add input validation
     
@@ -177,22 +183,30 @@ public class Form extends JFrame implements ActionListener {
                   + tE.getText() + "\n";
 
             String data3 = "Address : " + tA.getText(); 
-            tout.setText(data + data3); 
-            tout.setEditable(false);
-            
-            //TODO: Create Text file with inputted information
-            
-            res.setText("Contact Registration Successful!"); 
-        } 
+            tout.setText(data + data3);
+            tout.setEditable(false);          
+            res.setText("Contact Registration Successful!");
+			try {
+			  String file = "Wk9Grp3Assignment.txt";
+			  String path = ("../" +file);
+			  fileWriter = new FileWriter(path);
+			  fileWriter.write(name.getText() + ":" + tname.getText() + " ");
+			  fileWriter.write(phoneNumber.getText() + ":" + tPN.getText() + " ");
+			  fileWriter.write(address.getText() + ":" + tA.getText() + " ");
+			  fileWriter.write(email.getText() + ":" + tE.getText());
+			  fileWriter.close();
+			  JOptionPane.showMessageDialog(null, "Output file " +file+ " has been successfully saved to project root folder.");
+			} catch (Exception f) {JOptionPane.showMessageDialog(null, f + "");}
+   } 
   
         else if (e.getSource() == reset) { 
             String def = ""; 
-            tname.setText(def); 
+            tname.setText(def);
             tA.setText(def);
             tE.setText(def);
             tPN.setText(def); 
             res.setText(def); 
-            tout.setText(def);   
+            tout.setText(def); 
         }
     }
     
