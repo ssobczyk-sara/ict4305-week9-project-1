@@ -1,12 +1,20 @@
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -96,29 +104,51 @@ public class Form extends JFrame implements ActionListener {
         address.setSize(200, 30); 
         address.setLocation(100, 250); 
         contentPane.add(address); 
-  
+        
         tA = new JTextArea(); 
+        patch(tA);
         tA.setFont(new Font("Gotham", Font.PLAIN, 15)); 
-        tA.setSize(225, 60); 
+        tA.setSize(225, 60);
         tA.setLocation(225, 250); 
         tA.setLineWrap(true); 
-        contentPane.add(tA); 
+        contentPane.add(tA);
         
 // Submit Button
         sub = new JButton("Submit"); 
         sub.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         sub.setSize(100, 20); 
         sub.setLocation(275, 350); 
-        sub.addActionListener((ActionListener) this); 
+        sub.addActionListener((ActionListener) this);
         contentPane.add(sub); 
-  
-        reset = new JButton("Reset"); 
+        
+        sub.registerKeyboardAction(sub.getActionForKeyStroke(
+        KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false)),
+        KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),
+        JComponent.WHEN_FOCUSED);
+        
+        sub.registerKeyboardAction(sub.getActionForKeyStroke(
+        KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, true)),
+        KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
+        JComponent.WHEN_FOCUSED);
+
+// Reset Button  
+        reset = new JButton("Reset");
         reset.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         reset.setSize(100, 20); 
         reset.setLocation(400, 350); 
         reset.addActionListener((ActionListener) this); 
-        contentPane.add(reset); 
-  
+        contentPane.add(reset);
+        
+        reset.registerKeyboardAction(reset.getActionForKeyStroke(
+        KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false)),
+        KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),
+        JComponent.WHEN_FOCUSED);
+        
+        reset.registerKeyboardAction(reset.getActionForKeyStroke(
+        KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, true)),
+        KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
+        JComponent.WHEN_FOCUSED);
+
         tout = new JTextArea(); 
         tout.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         tout.setSize(200, 210); 
@@ -163,8 +193,17 @@ public class Form extends JFrame implements ActionListener {
             tPN.setText(def); 
             res.setText(def); 
             tout.setText(def);   
-        } 
-    } 
+        }
+    }
+    
+    //Patches issue with not being able to tab out of certain components
+    private void patch(Component c) {
+        Set<KeyStroke> 
+        strokes = new HashSet<>(Arrays.asList(KeyStroke.getKeyStroke("pressed TAB")));
+        c.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, strokes);
+        strokes = new HashSet<>(Arrays.asList(KeyStroke.getKeyStroke("shift pressed TAB")));
+        c.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, strokes);
+    }
 }
     
 //    PHONE NUMBER VALIDATION NOTES
