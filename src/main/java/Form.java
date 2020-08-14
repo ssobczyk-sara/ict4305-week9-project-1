@@ -1,21 +1,6 @@
-<<<<<<< Updated upstream
 import javax.swing.*; 
 import java.awt.*; 
 import java.awt.event.*;
-=======
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-import java.io.FileWriter;
-import javax.swing.JOptionPane;
->>>>>>> Stashed changes
 
 /**
  *
@@ -38,12 +23,7 @@ public class Form {
     private final JButton reset; 
     private final JTextArea tout; 
     private final JLabel res; 
-<<<<<<< Updated upstream
     private final JTextArea resadd;  
-=======
-    private final JTextArea resadd;
-    FileWriter fileWriter;
->>>>>>> Stashed changes
   
  
     public Form() 
@@ -165,7 +145,6 @@ public class Form {
     public void actionPerformed(ActionEvent e) 
     { 
         if (e.getSource() == sub) { 
-<<<<<<< Updated upstream
             if (term.isSelected()) {  
                 String data 
                     = "Name : "
@@ -184,48 +163,17 @@ public class Form {
                 res.setText("Please accept the"
                             + " terms & conditions.."); 
             } 
-=======
-            String data 
-                = "Name : "
-                  + tname.getText() + "\n"
-                  + "Mobile : "
-                  + tPN.getText() + "\n" 
-                  + "Email : "
-                  + tE.getText() + "\n";
-
-            String data3 = "Address : " + tA.getText(); 
-            tout.setText(data + data3); 
-            tout.setEditable(false);          
-            res.setText("Registration Successful!"); 
-
-			try {
-			  String file = "Wk9Grp3Assignment.txt";
-			  String path = ("../" +file);
-			  fileWriter = new FileWriter(path);
-			  fileWriter.write(name.getText() + ":" + tname.getText() + " ");
-			  fileWriter.write(phoneNumber.getText() + ":" + tPN.getText() + " ");
-			  fileWriter.write(address.getText() + ":" + tA.getText() + " ");
-			  fileWriter.write(email.getText() + ":" + tE.getText());
-			  fileWriter.close();
-			  JOptionPane.showMessageDialog(null, "Output file " +file+ " has been successfully saved to project root folder.");
-			} catch (Exception f) {JOptionPane.showMessageDialog(null, f + "");}
->>>>>>> Stashed changes
         } 
   
         else if (e.getSource() == reset) { 
             String def = ""; 
             tname.setText(def); 
             tA.setText(def); 
-			tE.setText(def);
             tPN.setText(def); 
             res.setText(def); 
             tout.setText(def); 
             term.setSelected(false);  
             resadd.setText(def); 
         } 
-
-		else if (e.getActionCommand()== sub.getActionCommand()) {
-
-		}
     } 
 } 
