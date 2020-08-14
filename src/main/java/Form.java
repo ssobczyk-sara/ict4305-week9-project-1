@@ -45,10 +45,10 @@ public class Form extends JFrame implements ActionListener {
         contentPane.setLayout(null);
         
 // Title
-        title = new JLabel("Registration Form"); 
+        title = new JLabel("Contact Form"); 
         title.setFont(new Font("Gotham", Font.PLAIN, 25)); 
         title.setSize(300, 30); 
-        title.setLocation(275, 30); 
+        title.setLocation(297, 30); 
         contentPane.add(title); 
         
 // Name  
@@ -130,7 +130,7 @@ public class Form extends JFrame implements ActionListener {
         res = new JLabel(""); 
         res.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         res.setSize(500, 25); 
-        res.setLocation(300, 375); 
+        res.setLocation(275, 375); 
         contentPane.add(res);
 
     } 
@@ -152,7 +152,7 @@ public class Form extends JFrame implements ActionListener {
             
             //TODO: Create Text file with inputted information
             
-            res.setText("Registration Successful!"); 
+            res.setText("Contact Registration Successful!"); 
         } 
   
         else if (e.getSource() == reset) { 
