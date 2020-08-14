@@ -31,8 +31,7 @@ public class Form extends JFrame implements ActionListener {
     private final JButton sub; 
     private final JButton reset; 
     private final JTextArea tout; 
-    private final JLabel res; 
-    private final JTextArea resadd;
+    private final JLabel res;
   
     //TODO: Add input validation
     
@@ -131,15 +130,9 @@ public class Form extends JFrame implements ActionListener {
         res = new JLabel(""); 
         res.setFont(new Font("Gotham", Font.PLAIN, 15)); 
         res.setSize(500, 25); 
-        res.setLocation(170, 375); 
+        res.setLocation(300, 375); 
         contentPane.add(res);
-  
-        resadd = new JTextArea(); 
-        resadd.setFont(new Font("Gotham", Font.PLAIN, 15)); 
-        resadd.setSize(200, 75); 
-        resadd.setLocation(500, 100); 
-        resadd.setLineWrap(true); 
-        contentPane.add(resadd); 
+
     } 
   
     public void actionPerformed(ActionEvent e) 
@@ -165,11 +158,11 @@ public class Form extends JFrame implements ActionListener {
         else if (e.getSource() == reset) { 
             String def = ""; 
             tname.setText(def); 
-            tA.setText(def); 
+            tA.setText(def);
+            tE.setText(def);
             tPN.setText(def); 
             res.setText(def); 
             tout.setText(def);   
-            resadd.setText(def); 
         } 
     } 
 }
