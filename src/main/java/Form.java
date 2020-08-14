@@ -16,10 +16,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.EmptyBorder;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
-
 
 /**
  * @author Ivan Piesh
@@ -43,8 +41,7 @@ public class Form extends JFrame implements ActionListener {
     private final JButton sub; 
     private final JButton reset; 
     private final JTextArea tout; 
-    private final JLabel res; 
-    private final JTextArea resadd;
+    private final JLabel res;
     FileWriter fileWriter;
   
     //TODO: Add input validation
@@ -171,6 +168,7 @@ public class Form extends JFrame implements ActionListener {
 
     } 
   
+    @Override
     public void actionPerformed(ActionEvent e) 
     { 
         if (e.getSource() == sub) { 
@@ -186,19 +184,22 @@ public class Form extends JFrame implements ActionListener {
             tout.setText(data + data3);
             tout.setEditable(false);          
             res.setText("Contact Registration Successful!");
-			try {
-			  String file = "Wk9Grp3Assignment.txt";
-			  String path = ("../" +file);
-			  fileWriter = new FileWriter(path);
-			  fileWriter.write(name.getText() + ":" + tname.getText() + " ");
-			  fileWriter.write(phoneNumber.getText() + ":" + tPN.getText() + " ");
-			  fileWriter.write(address.getText() + ":" + tA.getText() + " ");
-			  fileWriter.write(email.getText() + ":" + tE.getText());
-			  fileWriter.close();
-			  JOptionPane.showMessageDialog(null, "Output file " +file+ " has been successfully saved to project root folder.");
-			} catch (Exception f) {JOptionPane.showMessageDialog(null, f + "");}
-   } 
-  
+            
+            try {
+              String file = "Wk9Grp3Assignment.txt";
+              String path = ("./" + file);
+              fileWriter = new FileWriter(path);
+              fileWriter.write(name.getText() + ":" + tname.getText() + "\n");
+              fileWriter.write(phoneNumber.getText() + ":" + tPN.getText() + "\n");
+              fileWriter.write(email.getText() + ":" + tE.getText() + "\n");
+              fileWriter.write(address.getText() + ":" + tA.getText() + "\n");
+              fileWriter.close();
+              JOptionPane.showMessageDialog(null, "Output file " + file + 
+                      " has been successfully saved to project root folder.");
+            } catch (Exception f) {
+                JOptionPane.showMessageDialog(null, f + "");
+            }
+        } 
         else if (e.getSource() == reset) { 
             String def = ""; 
             tname.setText(def);

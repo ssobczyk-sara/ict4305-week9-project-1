@@ -21,8 +21,12 @@ public class FormTest {
     
     Form f = new Form();
 
-    
-    public FormTest() throws AWTException {
+    /**
+     * Test of actionPerformed method, of class Form.
+     * @throws java.awt.AWTException
+     */
+    @Test
+    public void testActionPerformed() throws AWTException {
         
         var os = System.getProperty("os.name");
         int modKey;
@@ -78,19 +82,14 @@ public class FormTest {
         bot.keyPress(KeyEvent.VK_ENTER);
         bot.keyRelease(KeyEvent.VK_ENTER);
         bot.delay(2000);
+        bot.keyPress(KeyEvent.VK_ENTER);
+        bot.keyRelease(KeyEvent.VK_ENTER);
+        bot.delay(1000);
         bot.keyPress(KeyEvent.VK_TAB);
         bot.keyRelease(KeyEvent.VK_TAB);
         bot.keyPress(KeyEvent.VK_ENTER);
         bot.keyRelease(KeyEvent.VK_ENTER);
-        bot.delay(1000);
-    }
-
-    /**
-     * Test of actionPerformed method, of class Form.
-     */
-    @Test
-    public void testActionPerformed() {
-
+        bot.delay(2000); 
     }
     
     private void clip(String text){
