@@ -76,6 +76,7 @@ public class FormTest {
         pressTabByAmount(bot, 4);
         // copy paste proper phone number
         clip(text[2]);
+        selectAll(bot, modKey);
         paste(bot, modKey);
         // go to submit and press enter to test blank email
         pressTabByAmount(bot, 3);
@@ -94,6 +95,7 @@ public class FormTest {
         pressTabByAmount(bot, 5);
         // copy paste valid email
         clip(text[4]);
+        selectAll(bot, modKey);
         paste(bot, modKey);
         // go to submit and press enter to test blank address
         pressTabByAmount(bot, 2);
@@ -142,6 +144,13 @@ public class FormTest {
         bot.keyPress(KeyEvent.VK_V);
         bot.keyRelease(modKey);
         bot.keyRelease(KeyEvent.VK_V);
+    }
+    
+    private void selectAll (Robot bot, int modKey) {
+        bot.keyPress(modKey);
+        bot.keyPress(KeyEvent.VK_A);
+        bot.keyRelease(modKey);
+        bot.keyRelease(KeyEvent.VK_A);
     }
     
 }
