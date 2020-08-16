@@ -1,4 +1,8 @@
-Name:Ivan Piesh
-Phone Number:555-555-5555
-Email:ivan.piesh@du.edu
-Address:1111 Cool Road, Sweet Home, Alabama, 99999
+Name: 
+Random Stranger
+Phone Number: 
+555-555-5555
+Email: 
+random.stranger@du.edu
+Address: 
+1111 Cool Road, Sweet Home, Alabama, 99999

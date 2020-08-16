@@ -43,9 +43,7 @@ public class Form extends JFrame implements ActionListener {
     private final JTextArea tout; 
     private final JLabel res;
     FileWriter fileWriter;
-  
-    //TODO: Add input validation
-    
+
     public Form() {   
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(800, 450, 800, 450);
@@ -168,38 +166,54 @@ public class Form extends JFrame implements ActionListener {
 
     } 
   
+    /**
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) 
-    { 
-        if (e.getSource() == sub) { 
-            String data 
-                = "Name : "
-                  + tname.getText() + "\n"
-                  + "Mobile : "
-                  + tPN.getText() + "\n" 
-                  + "Email : "
-                  + tE.getText() + "\n";
-
-            String data3 = "Address : " + tA.getText(); 
-            tout.setText(data + data3);
-            tout.setEditable(false);          
-            res.setText("Contact Registration Successful!");
+    {         
+        if (e.getSource() == sub) {
             
-            try {
-              String file = "Wk9Grp3Assignment.txt";
-              String path = ("./" + file);
-              fileWriter = new FileWriter(path);
-              fileWriter.write(name.getText() + ":" + tname.getText() + "\n");
-              fileWriter.write(phoneNumber.getText() + ":" + tPN.getText() + "\n");
-              fileWriter.write(email.getText() + ":" + tE.getText() + "\n");
-              fileWriter.write(address.getText() + ":" + tA.getText() + "\n");
-              fileWriter.close();
-              JOptionPane.showMessageDialog(null, "Output file " + file + 
-                      " has been successfully saved to project root folder.");
-            } catch (Exception f) {
-                JOptionPane.showMessageDialog(null, f + "");
+            if (tname.getText().isBlank())
+                res.setText("Name cannot be blank. Try again.");
+            else if (isValidPhoneNumber() == false)
+                res.setText("Invalid phone number. Try again.");
+            else if (!tE.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))
+                res.setText("Invalid email. Try again."); 
+            else if (tA.getText().isBlank())
+                res.setText("Address cannot be blank. Try again.");
+            else {
+                String data 
+                    = "Name : "
+                      + tname.getText() + "\n"
+                      + "Mobile : "
+                      + tPN.getText() + "\n" 
+                      + "Email : "
+                      + tE.getText() + "\n";
+
+                String data3 = "Address : " + tA.getText(); 
+                tout.setText(data + data3);
+                tout.setEditable(false);          
+                res.setText("Contact Registration Successful!");
+
+                try {
+                  String file = "Wk9Grp3Assignment.txt";
+                  String path = ("./" + file);
+                  fileWriter = new FileWriter(path);
+                  fileWriter.write(name.getText() + ": \n" + tname.getText() + "\n");
+                  fileWriter.write(phoneNumber.getText() + ": \n" + tPN.getText() + "\n");
+                  fileWriter.write(email.getText() + ": \n" + tE.getText() + "\n");
+                  fileWriter.write(address.getText() + ": \n" + tA.getText() + "\n");
+                  fileWriter.close();
+                  JOptionPane.showMessageDialog(null, "Output file " + file + 
+                          " has been successfully saved to project root folder.");
+                } catch (Exception f) {
+                    JOptionPane.showMessageDialog(null, f + "");
+                }
             }
-        } 
+        }
+        
         else if (e.getSource() == reset) { 
             String def = ""; 
             tname.setText(def);
@@ -219,12 +233,11 @@ public class Form extends JFrame implements ActionListener {
         strokes = new HashSet<>(Arrays.asList(KeyStroke.getKeyStroke("shift pressed TAB")));
         c.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, strokes);
     }
-}
     
-//    PHONE NUMBER VALIDATION NOTES
-//    private boolean isValidPhoneNumber(){
-//        if (phoneNumber.matches("\\d{10}")) return true;
-//        if (phoneNumber.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
-//        if (phoneNumber.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) return true;
-//        return false;
-//    }
+    private boolean isValidPhoneNumber(){
+        if (tPN.getText().matches("\\d{10}")) return true;
+        if (tPN.getText().matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
+        if (tPN.getText().matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) return true;
+            return false;
+    }
+}
